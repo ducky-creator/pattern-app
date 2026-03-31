@@ -44,7 +44,7 @@ export async function getLastTenEntries(): Promise<PatternEntry[]> {
     .limit(10)
     .get();
 
-  return snapshot.docs.map((doc) => normalizeEntry(doc.data()));
+  return snapshot.docs.map((doc) => normalizeEntry(doc.data() as { id: string; trigger: string; emotion: string; intensity: number; action: string; createdAt: string | Timestamp }));
 }
 
 function normalizeEntry(entry: {
